@@ -85,8 +85,14 @@ const {
     :show-arrows="false"
     :cycle="true"
   >
-    <v-carousel-item
+  <!--  <v-carousel-item
       v-for="(item, i) in popularData?.results"
+      :key="i"
+      :src="item.bannerImage"
+      cover
+    >-->
+ <v-carousel-item
+      v-for="(item, i) in trendingData?.results"
       :key="i"
       :src="item.bannerImage"
       cover
