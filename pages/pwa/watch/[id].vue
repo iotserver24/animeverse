@@ -542,13 +542,13 @@ export default {
                     </v-col>
                   </v-row>
                   <v-card-actions>
-                    <v-btn
+                   <!-- <v-btn
                       prepend-icon="mdi-help"
                       href="https://amvdocs.pages.dev/help/video-player"
                       target="blank"
                     >
                       Player Help
-                    </v-btn>
+                    </v-btn> -->
                     <v-spacer />
                     <v-btn
                       icon="mdi-close"
