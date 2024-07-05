@@ -78,10 +78,10 @@ useHead({
             1080p (FHD)
           </v-btn>
 
-          <i class="d-block text-gray">
-            API is provided by
+         <!-- <i class="d-block text-gray">
+            API is  by
             <a href="https://api3.iotserver24.workers.dev/">iotserver24</a>
-          </i>
+          </i> -->
         </v-card-text>
         <v-card-actions>
           <v-btn prepend-icon="mdi-close" @click="dl_dialog = false"></v-btn>
@@ -101,9 +101,9 @@ useHead({
         {{ anime?.title.userPreferred + " Episode " + getEP }}
         <br />
       </h3>
-      <em class="pb-4 d-block" style="color: red">
+      <!--<em class="pb-4 d-block" style="color: red">
         *This will redirected to Anitaku download page!
-      </em>
+      </em> -->
       <v-divider class="mb-4" />
       <div class="text-end ga-2 d-flex flex-row-reverse">
         <v-btn
