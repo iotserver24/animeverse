@@ -35,7 +35,7 @@ useHead({
   },
   title: anime.value?.title.userPreferred
     ? "Download " + anime.value?.title.userPreferred + " Episode " + getEP
-    : "amvstrm",
+    : "animeverse", 
 });
 </script>
 
@@ -113,7 +113,7 @@ useHead({
         >
           Watch
         </v-btn>
-        <v-btn color="yellow" prepend-icon="mdi-link" @click="dl_dialog = true">
+        <v-btn color="blue" prepend-icon="mdi-link" @click="dl_dialog = true">
           Download
         </v-btn>
       </div>
