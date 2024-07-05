@@ -114,15 +114,6 @@ useHead({
           Watch
         </v-btn>
         <v-btn color="yellow" prepend-icon="mdi-link" @click="dl_dialog = true">
-          Raw
-        </v-btn>
-        <v-btn
-          :loading="aniDLpending"
-          :href="animedl?.download"
-          target="blank"
-          prepend-icon="mdi-download"
-          color="blue"
-        >
           Download
         </v-btn>
       </div>
