@@ -284,7 +284,7 @@ const formatStringDate = (year, month, day) => {
                   <v-card elevation="0">
                     <v-tabs v-model="ep_tab" grow="">
                       <v-tab value="eplist"> Episode list </v-tab>
-                      <v-tab value="other"> Other </v-tab>
+                     <!-- <v-tab value="other"> Other </v-tab>-->
                     </v-tabs>
                     <v-card-text>
                       <v-window v-model="ep_tab">
