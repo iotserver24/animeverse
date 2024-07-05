@@ -145,10 +145,10 @@ const clearData = () => {
             <v-list-item title="Import" @click="importData" />
             <v-list-item title="Export" @click="exportData" />
             <v-list-item title="Clear All" @click="clear_dia = true" />
-            <v-list-item
+           <!-- <v-list-item
               title="Help"
               href="https://docs.amvstr.me/help/bookmark"
-            />
+            />-->
           </v-list>
         </v-menu>
       </v-col>
