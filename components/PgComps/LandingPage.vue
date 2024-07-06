@@ -47,6 +47,18 @@ const {
   }
 );
 
+// const {
+//   data: scheduleData,
+//   pending: schpend,
+//   refresh: scheduledataRefresh,
+//   error: scheduleerr,
+// } = await useFetch(
+//   `${env.public.API_URL}/api/${env.public.version}/schedule?limit=12`,
+//   {
+//     cache: "force-cache",
+//   }
+// );
+
 const {
   data: seasonData,
   pending: seaspend,
@@ -66,6 +78,7 @@ const {
   <!-- eslint-disable vue/no-v-html -->
   <v-no-ssr>
     <v-carousel
+      class="d-none d-md-block"
       hide-delimiters
       progress="green"
       height="320px"
@@ -117,6 +130,7 @@ const {
   </v-no-ssr>
   <!-- Search&History -->
   <v-container>
+    <SearchBar />
     <ClientOnly>
       <div v-if="history_state?.latest_anime_watched">
         <v-alert
@@ -282,13 +296,18 @@ const {
         <v-icon>mdi-reload</v-icon>
       </v-btn>
     </div>
-    <v-row v-else>
-      <v-col class="media-scrolling">
-        <div v-for="d in trendingData?.results" :key="d.id">
+    <v-container v-else fluid>
+      <div class="grid">
+        <div
+          v-for="(d, i) in trendingData?.results"
+          :key="i"
+          class="d-flex justify-center"
+        >
           <AnimeCard
             :id="d.id"
             :title="d.title.userPreferred"
             :imgsrc="d.coverImage.large"
+            :imgalt="d.id.toString()"
             :anime-color="d.coverImage.color"
             :year="d.seasonYear"
             :type="d.format"
@@ -296,8 +315,8 @@ const {
             :status="d.status"
           />
         </div>
-      </v-col>
-    </v-row>
+      </div>
+    </v-container>
     <h2>Upcoming Anime : {{ getSeason() }}</h2>
     <div v-if="seaspend" class="loadingBlock">
       <v-progress-circular :size="45" indeterminate />
@@ -314,9 +333,13 @@ const {
         <v-icon>mdi-reload</v-icon>
       </v-btn>
     </div>
-    <v-row v-else>
-      <v-col class="media-scrolling">
-        <div v-for="d in seasonData?.results" :key="d.id">
+    <v-container v-else fluid>
+      <div class="grid">
+        <div
+          v-for="(d, i) in seasonData?.results"
+          :key="i"
+          class="d-flex justify-center"
+        >
           <AnimeCard
             :id="d.id"
             :title="d.title.userPreferred"
@@ -328,8 +351,8 @@ const {
             :status="d.status"
           />
         </div>
-      </v-col>
-    </v-row>
+      </div>
+    </v-container>
     <h2>Popular Anime</h2>
     <div v-if="popend" class="loadingBlock">
       <v-progress-circular :size="45" indeterminate />
@@ -346,9 +369,13 @@ const {
         <v-icon>mdi-reload</v-icon>
       </v-btn>
     </div>
-    <v-row v-else>
-      <v-col class="media-scrolling">
-        <div v-for="d in popularData?.results" :key="d.id">
+    <v-container v-else fluid>
+      <div class="grid">
+        <div
+          v-for="(d, i) in popularData?.results"
+          :key="i"
+          class="d-flex justify-center"
+        >
           <AnimeCard
             :id="d.id"
             :title="d.title.userPreferred"
@@ -360,26 +387,25 @@ const {
             :status="d.status"
           />
         </div>
-      </v-col>
-    </v-row>
+      </div>
+    </v-container>
   </v-container>
 </template>
 
 <style scoped>
-.media-scrolling {
-  display: flex;
-  overflow-x: scroll;
-  padding: 10px 10px;
+.d-lg-block {
+  display: none !important;
 }
+
+@media (min-width: 992px) {
+  .d-lg-block {
+    display: block !important;
+  }
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-.loadingBlock {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
 }
 </style>
