@@ -29,7 +29,7 @@ const {
   pending: trpend,
   refresh: trenddataRefresh,
   error: trenderr,
-} = await useFetch(
+} = useFetch(
   `${env.public.API_URL}/api/${env.public.version}/trending?limit=12`,
   {
     cache: "force-cache",
@@ -40,7 +40,7 @@ const {
   pending: popend,
   refresh: popdataRefresh,
   error: poperr,
-} = await useFetch(
+} = useFetch(
   `${env.public.API_URL}/api/${env.public.version}/popular?limit=12`,
   {
     cache: "force-cache",
@@ -52,7 +52,7 @@ const {
 //   pending: schpend,
 //   refresh: scheduledataRefresh,
 //   error: scheduleerr,
-// } = await useFetch(
+// } = useFetch(
 //   `${env.public.API_URL}/api/${env.public.version}/schedule?limit=12`,
 //   {
 //     cache: "force-cache",
@@ -64,7 +64,7 @@ const {
   pending: seaspend,
   refresh: seasdataRefresh,
   error: seaserr,
-} = await useFetch(
+} = useFetch(
   `${env.public.API_URL}/api/${
     env.public.version
   }/season/${getSeason()}/${new Date().getFullYear()}?limit=12`,
@@ -75,62 +75,62 @@ const {
 </script>
 
 <template>
-  <!-- eslint-disable vue/no-v-html                 class="d-none d-md-block" -->
+  <!-- eslint-disable vue/no-v-html -->
   <v-no-ssr>
     <v-carousel
-   
-      hide-delimiters
-      progress="green"
-      height="320px"
-      :show-arrows="false"
-      :cycle="true"
+    class="d-none d-md-block"
+    hide-delimiters
+    progress="green"
+    height="320px"
+    :show-arrows="false"
+    :cycle="true"
+  >
+    <v-carousel-item
+      v-for="(item, i) in trendingData?.results"
+      :key="i"
+      :src="item.bannerImage"
+      cover
     >
-      <v-carousel-item
-        v-for="(item, i) in popularData?.results"
-        :key="i"
-        :src="item.bannerImage"
-        cover
-      >
-        <div class="carousel-item">
-          <img :src="item.coverImage.large" alt="Carousel Image" />
-          <div class="d-flex flex-column pa-2 justify-center">
-            <h2>{{ item.title.userPreferred }}</h2>
-            <p class="text--secondary">
-              {{ item.title.native }}
-            </p>
-            <div
-              style="
-                overflow: hidden;
-                transition: color 0.2s ease;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2;
+      <div class="carousel-item">
+        <img :src="item.coverImage.large" alt="Carousel Image" />
+        <div class="d-flex flex-column pa-2 justify-center">
+          <h2>{{ item.title.userPreferred }}</h2>
+          <p class="text--secondary">
+            {{ item.title.native }}
+          </p>
+          <div
+            style="
+              overflow: hidden;
+              transition: color 0.2s ease;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+            "
+            v-html="item.description"
+          />
+          <div class="pt-2">
+            <v-btn
+              :to="
+                (!/\/pwa\.*/.test(useRoute().path) ? '/' : '/pwa/') +
+                'anime/' +
+                item.id
               "
-              v-html="item.description"
-            />
-            <div class="pt-2">
-              <v-btn
-                :to="
-                  (!/\/pwa\.*/.test(useRoute().path) ? '/' : '/pwa/') +
-                  'anime/' +
-                  item.id
-                "
-                :color="
-                  item.coverImage.color ? item.coverImage.color : 'transparent'
-                "
-                append-icon="mdi-open-in-new"
-              >
-                Read more
-              </v-btn>
-            </div>
+              :color="
+                item.coverImage.color ? item.coverImage.color : 'transparent'
+              "
+              append-icon="mdi-open-in-new"
+            >
+              Read more
+            </v-btn>
           </div>
         </div>
-      </v-carousel-item>
-    </v-carousel>
+      </div>
+    </v-carousel-item>
+  </v-carousel>
   </v-no-ssr>
   <!-- Search&History -->
   <v-container>
-   <!-- <SearchBar /> -->
+    <!--<SearchBar /> -->
     <ClientOnly>
       <div v-if="history_state?.latest_anime_watched">
         <v-alert
@@ -296,18 +296,13 @@ const {
         <v-icon>mdi-reload</v-icon>
       </v-btn>
     </div>
-    <v-container v-else fluid>
-      <div class="grid">
-        <div
-          v-for="(d, i) in trendingData?.results"
-          :key="i"
-          class="d-flex justify-center"
-        >
+    <v-row v-else>
+      <v-col class="media-scrolling">
+        <div v-for="d in trendingData?.results" :key="d.id">
           <AnimeCard
             :id="d.id"
             :title="d.title.userPreferred"
             :imgsrc="d.coverImage.large"
-            :imgalt="d.id.toString()"
             :anime-color="d.coverImage.color"
             :year="d.seasonYear"
             :type="d.format"
@@ -315,9 +310,9 @@ const {
             :status="d.status"
           />
         </div>
-      </div>
-    </v-container>
-    <h2>Upcoming Anime : {{ getSeason() }}</h2>
+      </v-col>
+    </v-row>
+    <h2 class="mt-10">Upcoming Anime : {{ getSeason() }}</h2>
     <div v-if="seaspend" class="loadingBlock">
       <v-progress-circular :size="45" indeterminate />
     </div>
@@ -333,13 +328,9 @@ const {
         <v-icon>mdi-reload</v-icon>
       </v-btn>
     </div>
-    <v-container v-else fluid>
-      <div class="grid">
-        <div
-          v-for="(d, i) in seasonData?.results"
-          :key="i"
-          class="d-flex justify-center"
-        >
+    <v-row v-else>
+      <v-col class="media-scrolling">
+        <div v-for="d in seasonData?.results" :key="d.id">
           <AnimeCard
             :id="d.id"
             :title="d.title.userPreferred"
@@ -351,9 +342,9 @@ const {
             :status="d.status"
           />
         </div>
-      </div>
-    </v-container>
-    <h2>Popular Anime</h2>
+      </v-col>
+    </v-row>
+    <h2 class="mt-10">Popular Anime</h2>
     <div v-if="popend" class="loadingBlock">
       <v-progress-circular :size="45" indeterminate />
     </div>
@@ -362,20 +353,16 @@ const {
         dense
         type="error"
         title="Error"
-        text="Error loading popular anime!"
+        text="Error loading trending anime!"
       />
       <v-btn @click="popdataRefresh()">
         Reload?
         <v-icon>mdi-reload</v-icon>
       </v-btn>
     </div>
-    <v-container v-else fluid>
-      <div class="grid">
-        <div
-          v-for="(d, i) in popularData?.results"
-          :key="i"
-          class="d-flex justify-center"
-        >
+    <v-row v-else>
+      <v-col class="media-scrolling">
+        <div v-for="d in popularData?.results" :key="d.id">
           <AnimeCard
             :id="d.id"
             :title="d.title.userPreferred"
@@ -387,25 +374,54 @@ const {
             :status="d.status"
           />
         </div>
-      </div>
-    </v-container>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
-<style scoped>
-.d-lg-block {
-  display: none !important;
-}
-
-@media (min-width: 992px) {
-  .d-lg-block {
-    display: block !important;
-  }
+<style>
+.loadingBlock {
+  height: 200px;
+  display: grid;
+  place-items: center;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.media-scrolling {
+  --_spacer: 0.6rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  display: grid;
+  grid-auto-flow: column;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  scroll-padding-inline: var(--_spacer, 1rem);
+}
+
+.media-scrolling > * {
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  }
+}
+
+.carousel-item {
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem;
+  height: 320px;
   gap: 1rem;
 }
 </style>
