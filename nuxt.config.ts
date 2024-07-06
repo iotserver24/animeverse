@@ -1,26 +1,26 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      titleTemplate: "%s - amvstrm",
-      title: "amvstrm",
+      titleTemplate: "%s - AnimeVerse",
+      title: "AnimeVerse",
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         {
           name: "description",
-          content: "amvstrm - A streaming service for weebo...",
+          content: "AnimeVerse - A streaming service for weebo...",
         },
         {
           name: "keywords",
           content:
-            "amvstrm, amvstr, amvstreaming, anime streaming site, anime, free anime",
+            "AnimeVerse, amvstr, amvstreaming, anime streaming site, anime, free anime",
         },
         { property: "og:type", content: "website" },
         { property: "og:url", content: "/" },
-        { property: "og:title", content: "Home - amvstrm" },
+        { property: "og:title", content: "Home - AnimeVerse" },
         {
           property: "og:description",
-          content: "amvstrm - A streaming service for weebo...",
+          content: "AnimeVerse - A streaming service for weebo...",
         },
         {
           property: "og:image",
@@ -28,10 +28,10 @@ export default defineNuxtConfig({
         },
         { property: "twitter:card", content: "summary_large_image" },
         { property: "twitter:url", content: "/" },
-        { property: "twitter:title", content: "Home - amvstrm" },
+        { property: "twitter:title", content: "Home - AnimeVerse" },
         {
           property: "twitter:description",
-          content: "amvstrm - A streaming service for weebo...",
+          content: "AnimeVerse - A streaming service for weebo...",
         },
         {
           property: "twitter:image",
@@ -115,8 +115,8 @@ export default defineNuxtConfig({
       "wh-icon.png",
     ],
     manifest: {
-      name: "amvstrm",
-      short_name: "amvstrm",
+      name: "AnimeVerse",
+      short_name: "AnimeVerse",
       start_url: "/pwa",
       display: "standalone",
       background_color: "#191919",
