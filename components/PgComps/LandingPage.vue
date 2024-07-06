@@ -75,11 +75,11 @@ const {
 </script>
 
 <template>
-  <!-- eslint-disable vue/no-v-html -->
+  <!-- eslint-disable vue/no-v-html -   class="d-none d-md-block"
+    hide-delimiters-->
   <v-no-ssr>
     <v-carousel
-    class="d-none d-md-block"
-    hide-delimiters
+   
     progress="green"
     height="320px"
     :show-arrows="false"
