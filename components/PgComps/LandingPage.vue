@@ -75,10 +75,10 @@ const {
 </script>
 
 <template>
-  <!-- eslint-disable vue/no-v-html -->
+  <!-- eslint-disable vue/no-v-html                 class="d-none d-md-block" -->
   <v-no-ssr>
     <v-carousel
-      class="d-none d-md-block"
+   
       hide-delimiters
       progress="green"
       height="320px"
@@ -130,7 +130,7 @@ const {
   </v-no-ssr>
   <!-- Search&History -->
   <v-container>
-    <SearchBar />
+   <!-- <SearchBar /> -->
     <ClientOnly>
       <div v-if="history_state?.latest_anime_watched">
         <v-alert
