@@ -1,123 +1,90 @@
-<script setup>
-const env = useRuntimeConfig();
-const randomBTNstate = ref(false);
-const loadSettingDialog = ref(false);
-
-const gotoRandomID = async () => {
-  const { data } = useFetch(
-    `${env.public.API_URL}/api/${env.public.version}/random`
-  );
-  navigateTo(`/anime/${data.value.id[0]}`);
-};
-</script>
 <template>
   <v-app>
-    <v-dialog v-model="loadSettingDialog" max-width="560px" eager scrim="#191919">
-      <PgCompsWebSettings />
-    </v-dialog>
-    <v-navigation-drawer v-model="drawer" temporary="">
-      <v-list>
-        <v-list-item>
-          <NuxtImg
-            src="/logo.png"
-            style="display: flex"
-            alt="amvstrm"
-            quality="80"
-            width="140px"
-          />
-        </v-list-item>
-        <ClientOnly>
-          <SearchBar />
-        </ClientOnly>
-      </v-list>
-      <v-divider />
-      <v-list>
-        <v-list-item title="Home" to="/" append-icon="mdi-home" />
-        <v-list-item
-          title="Search Anime"
-          to="/search"
-          append-icon="mdi-magnify"
-        />
-        <v-list-item
-          title="Bookmarker"
-          to="/bookmarks"
-          append-icon="mdi-bookmark-box-multiple"
-        />
-        <v-list-item
-          title="Randomizer"
-          append-icon="mdi-shuffle"
-          :disabled="randomBTNstate"
-          @click="gotoRandomID"
-        />
-      </v-list>
-      <v-divider />
-      <v-list>
-        <v-list-subheader>More</v-list-subheader>
-        <v-list-item title="Settings" @click="loadSettingDialog = true" />
-        <v-list-item title="About us" to="/about" />
-        <v-list-item title="Privacy Policy" to="/privacy" />
-        <v-list-item title="DMCA" href="/dmca">
-          <template #append>
-            <v-icon icon="mdi-information" />
-          </template>
-        </v-list-item>
-        <v-list-item title="Help" href="https://amvdocs.pages.dev/help">
-          <template #append>
-            <v-icon icon="mdi-help" />
-          </template>
-        </v-list-item>
-        <v-list-item title="Github" href="https://github.com/amvstrm/amvstrm">
-          <template #append>
-            <v-icon icon="mdi-github" />
-          </template>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
     <v-app-bar absolute="">
-      <v-col>
-        <NuxtLink to="/">
-          <NuxtImg
-            src="/logo.png"
-            style="display: flex"
-            alt="amvstrm"
-            quality="80"
-            width="140px"
-          />
-        </NuxtLink>
-      </v-col>
-      <v-spacer />
-      <v-app-bar-nav-icon @click="drawer = !drawer" />
+      <v-breadcrumbs :items="breadcrumbs">
+        <template #prepend>
+          <v-icon class="mr-1 d-flex" size="small" icon="mdi-home"></v-icon>
+        </template>
+        <template #item="{ item }">
+          <v-breadcrumbs-item
+            :class="shouldDisableLink(item.link) ? '' : 'truncated'"
+            :to="item.link"
+            :disabled="shouldDisableLink(item.link)"
+          >
+            {{ item.text }}
+          </v-breadcrumbs-item>
+        </template>
+      </v-breadcrumbs>
     </v-app-bar>
     <v-main>
       <slot />
-      <ClientOnly>
-        <AppCookieBanner />
-      </ClientOnly>
     </v-main>
-    <v-footer app height="auto" dense absolute>
-      <p>amvstrm Cambodia © Copyright {{ new Date().getFullYear() }}</p>
-      <v-spacer />
-      <v-btn
-        :prepend-icon="
-          !/\/pwa\.*/.test(useRoute().path) ? 'mdi-cellphone' : 'mdi-web'
-        "
-        :to="
-          !/\/pwa\.*/.test(useRoute().path)
-            ? '/pwa' + useRoute().path
-            : useRoute().path
-        "
-      >
-        {{ !/\/pwa\.*/.test(useRoute().path) ? "PWA" : "Web" }}
+    <v-bottom-navigation :elevation="8" grow>
+      <v-btn to="/pwa" value="home">
+        <v-icon>mdi-home</v-icon>
+        Home
       </v-btn>
-    </v-footer>
+      <v-btn to="/pwa/search" value="search">
+        <v-icon>mdi-magnify</v-icon>
+        Search
+      </v-btn>
+      <v-btn to="/pwa/bookmarks" value="bookmark">
+        <v-icon>mdi-book</v-icon>
+        Bookmarker
+      </v-btn>
+      <v-btn to="/pwa/more" value="about">
+        <v-icon>mdi-menu</v-icon>
+        More
+      </v-btn>
+    </v-bottom-navigation>
   </v-app>
 </template>
-<script>
-export default {
-  data: () => ({
-    drawer: null,
-  }),
-};
+<script setup>
+const route = useRoute();
+
+function generateBreadcrumbs(route) {
+  const breadcrumbs = [];
+  breadcrumbs.push({ text: "Home", link: "/pwa" });
+
+  const pathSegments = route.path.slice(4).split("/");
+  for (let i = 1; i < pathSegments.length; i++) {
+    const segment = pathSegments[i];
+    const text = segment.charAt(0).toUpperCase() + segment.slice(1);
+    const link = `${pathSegments.slice(0, i + 1).join("/")}`;
+    breadcrumbs.push({ text, link });
+  }
+
+  return breadcrumbs;
+}
+
+function shouldDisableLink(link) {
+  const nonClickablePaths = [
+    "/watch",
+    "/anime",
+    "/more",
+    "/search",
+    "/bookmarks",
+  ];
+  return nonClickablePaths.some((path) => link.startsWith(path));
+}
+
+const breadcrumbs = computed(() => generateBreadcrumbs(route));
 </script>
-<style scoped></style>
+<style>
+.truncated {
+  width: "180px";
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 768px) {
+  .truncated {
+    width: "250px";
+  }
+}
+
+.v-breadcrumbs-item--disabled {
+  opacity: 1 !important;
+}
+</style>
