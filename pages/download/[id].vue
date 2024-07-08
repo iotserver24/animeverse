@@ -78,10 +78,10 @@ useHead({
             1080p (FHD)
           </v-btn>
 
-         <!-- <i class="d-block text-gray">
-            API is  by
-            <a href="https://api3.iotserver24.workers.dev/">iotserver24</a>
-          </i> -->
+          <i class="d-block text-gray">
+            please download Advanced Download manager or any other to download the episode
+            <!--<a href="https://api3.iotserver24.workers.dev/">iotserver24</a>-->
+          </i>
         </v-card-text>
         <v-card-actions>
           <v-btn prepend-icon="mdi-close" @click="dl_dialog = false"></v-btn>
