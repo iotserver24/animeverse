@@ -355,10 +355,10 @@ const formatStringDate = (year, month, day) => {
                                   epAniDub?.episodes.length === 0
                                 "
                               >
-                                Episodes not found or not available...<br> if you think this is issue from our side pls <a href:"https://t.me/chatavup"> msg here </a> to help us to fix it
+                                Episodes not found or not available...
                               </div>
                               <div v-else-if="epDubAniError">
-                                Episodes failed to load due to API error! pls <a href:"https://t.me/chatavup"> msg here </a> for support
+                                Episodes failed to load due to API error!
                               </div>
                               <v-list-item
                                 v-for="(ep, i) in epAniDub.episodes"
