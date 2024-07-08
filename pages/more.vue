@@ -1,11 +1,19 @@
 <!-- eslint-disable vue/no-multiple-template-root -->
 <template>
   <v-container>
+    <v-breadcrumbs style="padding: 0; margin-bottom: 1rem">
+      <template #prepend>
+        <v-icon size="small" icon="mdi-home"></v-icon>
+      </template>
+      <v-breadcrumbs-item title="Home" to="/pwa" />
+      <v-breadcrumbs-divider />
+      <v-breadcrumbs-item title="More" />
+    </v-breadcrumbs>
     <div class="pb-4">
       <h1>More</h1>
     </div>
     <v-list lines="two">
-      <v-list-item title="amvstrm's PWA mode" subtitle="Version amvN3 (Nuxt 3)">
+      <v-list-item title="AnimeVerse app" subtitle="WebView:100.1.1">
         <template #prepend>
           <img
             src="/icon.png"
@@ -13,42 +21,31 @@
           />
         </template>
       </v-list-item>
-      <v-list-item
-        title="amvstrm"
-        :subtitle="new Date().getFullYear() + ' © amvstrm'"
-      />
-    </v-list>
-    <v-divider class="my-4"></v-divider>
-    <v-list lines="two">
-      <v-list-item title="Web Mode" append-icon="mdi-web" to="/"></v-list-item>
       <v-list-item title="About us" target="blank" href="/about" />
-      <v-list-item title="Privacy Policy" target="blank" href="/privacy" />
       <v-list-item
-        title="Help"
+        title="YouTube"
         target="blank"
-        href="https://docs.amvstr.ml/help"
-      >
-        <template #append>
-          <v-icon icon="mdi-help" />
-        </template>
-      </v-list-item>
+        href="https://youtube.com/@r3ap3redit?si=hhoYRR4invbBl-yF"
+      />
+          <v-list-item
+        title="Download official app for your Device"
+        target="blank"
+        href="https://www.animeverse.cc"
+      />
+      <!-- Adding this closing tag to properly close the v-list-item -->
       <v-list-item
-        title="Github"
+        title=""
         target="blank"
-        href="https://github.com/amvstrm/amvstrm"
+        href="https://liberapay.com/R3AP3R_editz/donate"
       >
-        <template #append>
-          <v-icon icon="mdi-github" />
+        <template #prepend>
+          <img
+            alt="Donate us to keep it running"
+            src="https://liberapay.com/assets/widgets/donate.svg"
+            style="display: flex; width: 100px; height: 100%"
+          />
         </template>
       </v-list-item>
     </v-list>
   </v-container>
 </template>
-<script setup>
-useHead({
-  htmlAttrs: {
-    lang: "en",
-  },
-  title: "More",
-});
-</script>
