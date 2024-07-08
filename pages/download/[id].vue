@@ -78,10 +78,11 @@ useHead({
             1080p (FHD)
           </v-btn>
 
-          <i class="d-block text-gray">
-            please download Advanced Download manager or any other to download the episode
+         
+            <em class="pb-4 d-block" style="color: red">
+            please download <bold>Advanced Download manager </bold> or any other to download the episode
             <!--<a href="https://api3.iotserver24.workers.dev/">iotserver24</a>-->
-          </i>
+          </em>
         </v-card-text>
         <v-card-actions>
           <v-btn prepend-icon="mdi-close" @click="dl_dialog = false"></v-btn>
