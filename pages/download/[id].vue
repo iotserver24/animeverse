@@ -80,7 +80,7 @@ useHead({
 
          
             <em class="pb-4 d-block" style="color: red">
-            please download <bold>Advanced Download manager </bold> or any other to download the episode
+            please download <b>Advanced Download manager </b> from Playstore or any other to download the episode
             <!--<a href="https://api3.iotserver24.workers.dev/">iotserver24</a>-->
           </em>
         </v-card-text>
