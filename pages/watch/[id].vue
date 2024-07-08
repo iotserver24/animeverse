@@ -42,7 +42,7 @@ const {
   }
 );
 
-const { data: time2Skip } = await useFetch(
+const { data: time2Skip } = useFetch(
   `${env.public.API_URL}/api/v2/stream/skiptime/${getID}/${getEP}`,
   {
     cache: "force-cache",
@@ -86,10 +86,10 @@ useHead({
 });
 
 const skipTimeHighlight = () => {
-  if (time2Skip.value?.found === true || time2Skip.value?.results < 0) {
+  if (time2Skip.value?.found === true) {
     const output = [];
 
-    if (time2Skip.value?.results.op) {
+    if (time2Skip.value.results.op) {
       output.push({
         text: "Opening start",
         time: time2Skip.value.results.op.interval.startTime,
@@ -101,7 +101,7 @@ const skipTimeHighlight = () => {
       });
     }
 
-    if (time2Skip.value?.results.ed) {
+    if (time2Skip.value.results.ed) {
       output.push({
         text: "Ending start",
         time: time2Skip.value.results.ed.interval.startTime,
@@ -113,7 +113,11 @@ const skipTimeHighlight = () => {
       });
     }
     return output;
-  } else if (time2Skip.value?.results === 0 || !time2Skip.value?.found) {
+  } else if (
+    !time2Skip.value ||
+    !time2Skip.value?.results ||
+    !time2Skip.value?.found
+  ) {
     return [];
   }
   return [];
@@ -213,9 +217,6 @@ function getInstance(art) {
     },
   });
   art.on("ready", () => {
-    if (navigator.userAgent.includes("Firefox")) {
-      art.controls.remove("chromecast");
-    }
     if (useRoute().query.time) {
       art.seek = parseInt(useRoute().query.time) || 0;
     }
@@ -312,7 +313,7 @@ function getInstance(art) {
       } else {
         const nextEpisode = ep?.value.episodes[currentEpisodeIndex - 1];
         navigateTo(
-          `/watch/${getID}-${getGogoID.split(`-episode-`)[0]}-episode-${
+          `/pwa/watch/${getID}-${getGogoID.split(`-episode-`)[0]}-episode-${
             nextEpisode.id.split(`-episode-`)[1]
           }`
         );
@@ -353,6 +354,7 @@ onMounted(() => {
     });
   });
 });
+
 </script>
 
 <script>
@@ -389,11 +391,7 @@ export default {
         'stream-ctn': playerSettings.s_theatre,
       }"
     >
-      <v-col
-        v-if="!strmError"
-        :cols="playerSettings.s_theatre ? 12 : 12"
-        :lg="playerSettings.s_theatre ? 12 : 8"
-      >
+      <v-col v-if="!strmError" :cols="playerSettings.s_theatre ? 12 : 12" :lg="playerSettings.s_theatre ? 12 : 8">
         <ClientOnly>
           <v-card
             v-if="
@@ -444,7 +442,9 @@ export default {
         ></v-empty-state>
       </v-col>
       <v-col>
-        <v-card class="epinf_card">
+        <v-card
+          class="epinf_card"
+        >
           <div class="pa-4 d-flex justify-space-between">
             <div style="flex: 1">
               <NuxtLink
