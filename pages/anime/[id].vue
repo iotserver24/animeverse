@@ -55,7 +55,7 @@ const countdown = ref();
 const updateCountdown = () => {
   setInterval(() => {
     const currentTime = Math.floor(Date.now() / 1000);
-    const remainingTime = anime?.value?.nextair?.airingAt - currentTime;
+    const remainingTime = anime?.value.nextair?.airingAt - currentTime;
     countdown.value = formatDuration(remainingTime);
   }, 1000);
 };
@@ -70,7 +70,7 @@ const formatDuration = (duration) => {
 };
 
 function getAiringDay() {
-  const airingDate = new Date(anime?.value?.nextair?.airingAt * 1000);
+  const airingDate = new Date(anime?.value.nextair?.airingAt * 1000);
   const daysOfWeek = [
     "Sunday",
     "Monday",
@@ -121,7 +121,6 @@ const {
     cache: "default",
   }
 );
-
 const stringInstring = '""';
 
 const formatStringDate = (year, month, day) => {
@@ -285,7 +284,7 @@ const formatStringDate = (year, month, day) => {
                   <v-card elevation="0">
                     <v-tabs v-model="ep_tab" grow="">
                       <v-tab value="eplist"> Episode list </v-tab>
-                      <v-tab value="other"> Other </v-tab>
+                     <!-- <v-tab value="other"> Other </v-tab>-->
                     </v-tabs>
                     <v-card-text>
                       <v-window v-model="ep_tab">
