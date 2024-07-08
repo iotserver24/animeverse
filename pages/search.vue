@@ -273,7 +273,7 @@ watch([search, selectGenres, selectTags], () => {
       @focus="isFocused = true"
     />
     <v-row class="my-1">
-    <!--  <v-col style="padding-bottom: 0" cols="12" sm="6">
+      <v-col style="padding-bottom: 0" cols="12" sm="6">
         <v-combobox
           v-model="selectGenres"
           :items="genreItems"
@@ -290,7 +290,7 @@ watch([search, selectGenres, selectTags], () => {
           label="Tags"
           multiple
         ></v-combobox>
-      </v-col>-->
+      </v-col>
     </v-row>
     <v-card class="mt-2">
       <v-card-text v-if="!isFocused && !searchLoading && !searchResults.length">
@@ -315,7 +315,7 @@ watch([search, selectGenres, selectTags], () => {
         <v-list-item
           v-for="item in searchResults"
           :key="item.id"
-          :to="'/anime/' + item.id"
+          :to="'/pwa/anime/' + item.id"
         >
           <template #prepend>
             <img
