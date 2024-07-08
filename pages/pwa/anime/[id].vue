@@ -3,7 +3,7 @@ const env = useRuntimeConfig();
 const episode_dialog = ref(false);
 const infotab = ref(null);
 const ep_tab = ref(null);
-const selectedProvider = ref("Gogoanime");
+const selectedProvider = ref("SUBBED");
 
 const {
   data: anime,
@@ -37,7 +37,7 @@ useSeoMeta({
   ogDescription: anime.value?.description,
   ogImage: anime.value?.coverImage.large,
   ogUrl: useRoute().fullPath,
-  twitterTitle: `${anime.value?.title.userPreferred} - amvstrm`,
+  twitterTitle: `${anime.value?.title.userPreferred} - animeverse`,
   twitterDescription: anime.value?.description,
   twitterImage: anime.value?.coverImage.large,
   twitterCard: "summary",
@@ -294,11 +294,11 @@ const formatStringDate = (year, month, day) => {
                               v-model="selectedProvider"
                               clearable
                               label="Select streaming provider"
-                              :items="['Gogoanime', 'Gogoanime (DUB)']"
+                              :items="['SUBBED', 'DUBBED ']"
                               variant="solo"
                             ></v-select>
                             <v-list
-                              v-if="selectedProvider == 'Gogoanime'"
+                              v-if="selectedProvider == 'SUBBED'"
                               lines="two"
                               height="320px"
                             >
@@ -339,7 +339,7 @@ const formatStringDate = (year, month, day) => {
                               </v-virtual-scroll>
                             </v-list>
                             <v-list
-                              v-else-if="selectedProvider == 'Gogoanime (DUB)'"
+                              v-else-if="selectedProvider == 'DUBBED '"
                               lines="two"
                               height="300px"
                             >
@@ -384,7 +384,7 @@ const formatStringDate = (year, month, day) => {
                             lines="two"
                           >
                             <v-list-item
-                              title="Gogoanime"
+                              title="SUBBED"
                               :subtitle="
                                 anime?.id_provider.idGogo == ''
                                   ? 'Not available'
@@ -404,7 +404,7 @@ const formatStringDate = (year, month, day) => {
                               </template>
                             </v-list-item>
                             <v-list-item
-                              title="Gogoanime (DUB)"
+                              title="DUBBED "
                               :subtitle="
                                 anime?.id_provider.idGogoDub == ''
                                   ? 'Not available'
