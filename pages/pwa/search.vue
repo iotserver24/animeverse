@@ -272,7 +272,7 @@ watch([search, selectGenres, selectTags], () => {
       prepend-inner-icon="mdi-magnify"
       @focus="isFocused = true"
     />
-    <v-row class="my-1">
+    <!--<v-row class="my-1">
       <v-col style="padding-bottom: 0" cols="12" sm="6">
         <v-combobox
           v-model="selectGenres"
@@ -291,7 +291,7 @@ watch([search, selectGenres, selectTags], () => {
           multiple
         ></v-combobox>
       </v-col>
-    </v-row>
+    </v-row> -->
     <v-card class="mt-2">
       <v-card-text v-if="!isFocused && !searchLoading && !searchResults.length">
         <div class="loadingBlock" style="height: 40vh">
