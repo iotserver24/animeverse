@@ -13,7 +13,7 @@
       <h1>More</h1>
     </div>
     <v-list lines="two">
-      <v-list-item title="AnimeVerse app" subtitle="WebView:100.1.1">
+      <v-list-item title="AnimeVerse app" subtitle="Mobile app:100.1.1">
         <template #prepend>
           <img
             src="/icon.png"
@@ -27,14 +27,10 @@
         target="blank"
         href="https://youtube.com/@r3ap3redit?si=hhoYRR4invbBl-yF"
       />
-          <v-list-item
-        title="Download official app for your Device"
-        target="blank"
-        href="https://www.animeverse.cc"
-      />
+        
       <!-- Adding this closing tag to properly close the v-list-item -->
       <v-list-item
-        title=""
+        title=" "
         target="blank"
         href="https://liberapay.com/R3AP3R_editz/donate"
       >
