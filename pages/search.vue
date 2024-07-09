@@ -351,7 +351,7 @@ watch([search, selectGenres, selectTags], () => {
       </v-list>
       <v-card-text v-else>
         <div class="loadingBlock">
-          <h1>No results found!</h1>
+          <h1>No results found! If you feel an anime is missing, please <a href="https://t.me/chatavup">msg here</a></h1>
         </div>
       </v-card-text>
     </v-card>
