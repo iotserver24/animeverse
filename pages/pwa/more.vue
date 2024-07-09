@@ -5,10 +5,10 @@
       <template #prepend>
         <v-icon size="small" icon="mdi-home"></v-icon>
       </template>
-      <v-breadcrumbs-item title="Home" to="/pwa" />
+     <!-- <v-breadcrumbs-item title="Home" to="/pwa" />
       <v-breadcrumbs-divider />
-      <v-breadcrumbs-item title="More" />
-    </v-breadcrumbs>
+      <v-breadcrumbs-item title="More" />-->
+    </v-breadcrumbs> 
     <div class="pb-4">
       <h1>More</h1>
     </div>
