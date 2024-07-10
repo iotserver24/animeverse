@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar absolute="">
+    <!--<v-app-bar absolute="">
       <v-breadcrumbs :items="breadcrumbs">
         <template #prepend>
           <v-icon class="mr-1 d-flex" size="small" icon="mdi-home"></v-icon>
@@ -15,7 +15,7 @@
           </v-breadcrumbs-item>
         </template>
       </v-breadcrumbs>
-    </v-app-bar>
+    </v-app-bar>-->
     <v-main>
       <slot />
     </v-main>
