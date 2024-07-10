@@ -94,7 +94,7 @@ const {
       <div class="carousel-item">
         <img :src="item.coverImage.large" alt="Carousel Image" />
         <div class="d-flex flex-column pa-2 justify-center">
-          <h2>{{ item.title.userPreferred }}</h2>
+          <h3>{{ item.title.userPreferred }}</h3>
         <!--  <p class="text--secondary">
             {{ item.title.native }}
           </p>-->
