@@ -78,55 +78,49 @@ const {
   <!-- eslint-disable vue/no-v-html -   class="d-none d-md-block"
     hide-delimiters-->
   <v-no-ssr>
-    <v-carousel
-   
-    progress="green"
-    height="320px"
-    :show-arrows="false"
-    :cycle="true"
+   <v-carousel
+  hide-delimiters
+  progress="green"
+  height="320px"
+  :show-arrows="false"
+  :cycle="true"
+>
+  <v-carousel-item
+    v-for="(item, i) in trendingData?.results"
+    :key="i"
+    :src="item.bannerImage"
+    cover
   >
-    <v-carousel-item
-      v-for="(item, i) in trendingData?.results"
-      :key="i"
-      :src="item.bannerImage"
-      cover
-    >
-      <div class="carousel-item">
-        <img :src="item.coverImage.large" alt="Carousel Image" />
-        <div class="d-flex flex-column pa-2 justify-center">
-          <h3>{{ item.title.userPreferred }}</h3>
-        <!--  <p class="text--secondary">
-            {{ item.title.native }}
-          </p>-->
-          <div
-            style="
-              overflow: hidden;
-              transition: color 0.2s ease;
-              display: -webkit-box;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 2;
+    <div class="carousel-item">
+      <img :src="item.coverImage.large" alt="Carousel Image" />
+      <div class="d-flex flex-column pa-2 justify-center">
+        <h3>{{ item.title.userPreferred }}</h3>
+        <div
+          style="
+            overflow: hidden;
+            transition: color 0.2s ease;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+          "
+          v-html="item.description"
+        />
+        <div class="pt-2">
+          <v-btn
+            :to="'/pwa/anime/' + item.id"     
+            :color="
+              item.coverImage.color ? item.coverImage.color : 'transparent'
             "
-            v-html="item.description"
-          />
-          <div class="pt-2">
-            <v-btn
-              :to="
-                (!/\/pwa\.*/.test(useRoute().path) ? '/' : '/pwa/') +
-                'anime/' +
-                item.id
-              "
-              :color="
-                item.coverImage.color ? item.coverImage.color : 'transparent'
-              "
-              append-icon="mdi-open-in-new"
-            >
-              Watch Now
-            </v-btn>
-          </div>
+            append-icon="mdi-open-in-new"
+          >
+            Read more
+          </v-btn>
         </div>
       </div>
-    </v-carousel-item>
-  </v-carousel>
+    </div>
+  </v-carousel-item>
+</v-carousel>
+
   </v-no-ssr>
   <!-- Search&History -->
   <v-container>
