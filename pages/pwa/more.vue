@@ -27,11 +27,11 @@
         target="blank"
         href="https://youtube.com/@r3ap3redit?si=hhoYRR4invbBl-yF"
       />
-       <!--<v-list-item
+       <v-list-item
         title="Join our Updates Channel"
         target="blank"
         href="https://t.me/AVupdate"
-      />-->
+      />
         
         
       <!-- Adding this closing tag to properly close the v-list-item -->
