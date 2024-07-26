@@ -3,7 +3,7 @@
   <v-container>
     <v-breadcrumbs style="padding: 0; margin-bottom: 1rem">
       <template #prepend>
-        <v-icon size="small" icon="mdi-home"></v-icon>
+        <!--<v-icon size="small" icon="mdi-home"></v-icon>-->
       </template>
      <!-- <v-breadcrumbs-item title="Home" to="/pwa" />
       <v-breadcrumbs-divider />
@@ -13,7 +13,7 @@
       <h1>More</h1>
     </div>
     <v-list lines="two">
-      <v-list-item title="AnimeVerse app" subtitle="Mobile app:100.1.1">
+      <v-list-item title="AnimeVerse app" subtitle="Mobile app:105.1.7">
         <template #prepend>
           <img
             src="/icon.png"
@@ -31,6 +31,11 @@
         title="Join our Updates Channel"
         target="blank"
         href="https://t.me/AVupdate"
+      />
+       <v-list-item
+        title="telegram chat grp"
+        target="blank"
+        href="https://t.me/chatavup"
       />
         
         
