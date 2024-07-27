@@ -26,6 +26,10 @@
         </template>
       </v-list-item>
       <v-list-item title="About us" target="blank" href="/about" />
+       <v-list-item
+        title="main page"
+        href="go:html"
+      />
       <v-list-item
         title="YouTube"
         target="blank"
