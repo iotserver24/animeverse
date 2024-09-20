@@ -22,7 +22,7 @@ const { data: animedl, pending: aniDLpending } = useFetch(
 );
 
 const { data: dlURL } = useFetch(
-  `https://api3.iotserver24.workers.dev/download/${getGogoID}`,
+  `https://api.iotserver24.workers.dev/download/${getGogoID}`,
   {
     cache: "force-cache",
     responseType: "json",
@@ -81,7 +81,7 @@ useHead({
          
             <em class="pb-4 d-block" style="color: red">
             made by: R3AP3R editz
-            <!--<a href="https://api3.iotserver24.workers.dev/">iotserver24</a>-->
+            <!--<a href="https://api.iotserver24.workers.dev/">iotserver24</a>-->
           </em>
         </v-card-text>
         <v-card-actions>
